@@ -1,0 +1,20 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['14', '12']
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn lint
+      - run: yarn type-check
+      - run: yarn build

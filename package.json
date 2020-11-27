@@ -1,0 +1,50 @@
+{
+  "name": "matching-game",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "eslint src",
+    "start": "next start",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@stitches/react": "0.0.3-canary.4",
+    "@xstate/react": "1.0.3",
+    "next": "10.0.3",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-spring": "9.0.0-rc.3",
+    "xstate": "4.14.1"
+  },
+  "devDependencies": {
+    "@types/node": "14.14.10",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@typescript-eslint/eslint-plugin": "4.8.2",
+    "@typescript-eslint/parser": "4.8.2",
+    "eslint": "7.14.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-jest": "24.1.3",
+    "eslint-plugin-jest-dom": "3.3.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-testing-library": "3.10.1",
+    "eslint-plugin-wyze": "3.4.0",
+    "prettier": "2.2.1",
+    "react-confetti": "6.0.0",
+    "typescript": "4.1.2"
+  },
+  "resolutions": {
+    "@react-spring/animated": "patch:@react-spring/animated@9.0.0-rc.3#./patches/@react-spring+animated+9.0.0-rc.3.patch",
+    "@react-spring/core": "patch:@react-spring/core@9.0.0-rc.3#./patches/@react-spring+core+9.0.0-rc.3.patch",
+    "@react-spring/konva": "patch:@react-spring/konva@9.0.0-rc.3#./patches/@react-spring+konva+9.0.0-rc.3.patch",
+    "@react-spring/native": "patch:@react-spring/native@9.0.0-rc.3#./patches/@react-spring+native+9.0.0-rc.3.patch",
+    "@react-spring/shared": "patch:@react-spring/shared@9.0.0-rc.3#./patches/@react-spring+shared+9.0.0-rc.3.patch",
+    "@react-spring/three": "patch:@react-spring/three@9.0.0-rc.3#./patches/@react-spring+three+9.0.0-rc.3.patch",
+    "@react-spring/web": "patch:@react-spring/web@9.0.0-rc.3#./patches/@react-spring+web+9.0.0-rc.3.patch",
+    "@react-spring/zdog": "patch:@react-spring/zdog@9.0.0-rc.3#./patches/@react-spring+zdog+9.0.0-rc.3.patch"
+  }
+}

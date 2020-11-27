@@ -1,0 +1,38 @@
+diff --git a/index.d.ts b/index.d.ts
+index 81e1ade..3087807 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -27,17 +27,18 @@ declare type StylePropKeys = keyof StyleProps;
+ declare type ValidStyleProps<T extends object> = {
+     [P in keyof T & StylePropKeys]: T[P] extends StyleProps[P] ? P : never;
+ }[keyof T & StylePropKeys];
+-declare type AnimatedProp<T> = [T, T] extends [infer T, infer DT] ? [DT] extends [never] ? never : DT extends void ? undefined : DT extends object ? [ValidStyleProps<DT>] extends [never] ? DT extends ReadonlyArray<any> ? AnimatedStyles<DT> : DT : AnimatedStyle<T> : DT | AnimatedLeaf<T> : never;
++declare type AnimatedProp<T> = [T, T] extends [infer T, infer DT] ? [DT] extends [never] ? never : DT extends void ? undefined : DT extends string | number ? DT | AnimatedLeaf<T> : DT extends object ? [ValidStyleProps<DT>] extends [never] ? DT extends ReadonlyArray<any> ? AnimatedStyles<DT> : DT : AnimatedStyle<T> : DT | AnimatedLeaf<T> : never;
+ declare type AnimatedStyles<T extends ReadonlyArray<any>> = {
+     [P in keyof T]: [T[P]] extends [infer DT] ? DT extends object ? [ValidStyleProps<DT>] extends [never] ? DT extends ReadonlyArray<any> ? AnimatedStyles<DT> : DT : {
+         [P in keyof DT]: AnimatedProp<DT[P]>;
+     } : DT : never;
+ };
+-declare type AnimatedStyle<T> = [T, T] extends [infer T, infer DT] ? DT extends void ? undefined : [DT] extends [never] ? never : DT extends object ? AnimatedObject<DT> : DT | AnimatedLeaf<T> : never;
++declare type AnimatedStyle<T> = [T, T] extends [infer T, infer DT] ? DT extends void ? undefined : [DT] extends [never] ? never : DT extends string | number ? DT | AnimatedLeaf<T> : DT extends object ? AnimatedObject<DT> : DT | AnimatedLeaf<T> : never;
+ declare type AnimatedObject<T extends object> = {
+     [P in keyof T]: AnimatedStyle<T[P]>;
+ } | (T extends ReadonlyArray<number | string> ? FluidValue<Readonly<T>> : never);
+-declare type AnimatedLeaf<T> = Exclude<T, object | void> | Extract<T, ReadonlyArray<number | string>> extends infer U ? [U] extends [never] ? never : FluidValue<U | Exclude<T, object | void>> : never;
++declare type AnimatedLeaf<T> = NonObject<T> extends infer U ? [U] extends [never] ? never : FluidValue<U> : never;
++declare type NonObject<T> = | Extract<T, string | number | ReadonlyArray<string | number>> | Exclude<T, object | void>;
+ declare type Angle = number | string;
+ declare type Length = number | string;
+ declare type TransformProps = {
+diff --git a/package.json b/package.json
+index 53f8ff6..3d8f615 100644
+--- a/package.json
++++ b/package.json
+@@ -22,7 +22,6 @@
+   "contributors": [
+     "Alec Larson (https://github.com/aleclarson)"
+   ],
+-  "sideEffects": false,
+   "main": "index.cjs.js",
+   "module": "index.js",
+   "types": "index.d.ts",
