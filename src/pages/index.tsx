@@ -98,18 +98,6 @@ export default function Home(props: HomeProps) {
     }
   }, [difficulty, matches, stats])
 
-  useEffect(() => {
-    if (stats.start > 0) {
-      const timeout = setTimeout(() => {
-        log('pageview')
-      }, 30000)
-
-      return () => {
-        clearTimeout(timeout)
-      }
-    }
-  }, [stats.start])
-
   useUpdateEffect(() => {
     log('Difficulty', { difficulty })
   }, [difficulty])
